@@ -19,7 +19,7 @@ class autocontroller extends Controller
         $auto = auto::findOrFail($idAuto);
         $auto -> delete();
 
-        return ["mensaje" => "El auto con el id $idAuto ha sido eliminado";]
+        return ["mensaje" => "El auto con el id $idAuto ha sido eliminado"];
     }
 
     public function Insertar(Request $request){
