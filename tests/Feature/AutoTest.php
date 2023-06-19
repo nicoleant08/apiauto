@@ -132,4 +132,29 @@ public function test_Listar()
         
     } 
 
+    public function  test_InsertarAuto(){
+        $response=$this->post('/api/autos',[
+            "marca"=> "Bugatti",
+            "modelo"=>"veyron ",
+            "color"=>"cian",
+            "puertas"=>4,
+            "cilindrado"=>16,
+            "automatico"=>1,
+            "electronico"=>1
+        ]);
+
+        $response->assertStatus(201);
+        $response->assertJsonCount(10);
+
+        $this->assertDatabaseHas('autos',[
+            "marca"=> "Bugatti",
+            "modelo"=>"veyron ",
+            "color"=>"cian",
+            "puertas"=>4,
+            "cilindrado"=>16,
+            "automatico"=>1,
+            "electronico"=>1
+        ]);
+    }
+
 }
