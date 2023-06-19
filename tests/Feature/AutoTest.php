@@ -55,6 +55,28 @@ public function test_Listar()
         $response->assertStatus(200);
     }
 
+    public function test_EliminarUnoExistente()
+    {
+        $response = $this->delete('/api/autos/4'); //elimina el auto con el id 4
 
+        $response->assertStatus(200);
+        
+        $response->assertJsonFragment([
+            "mensaje" => "El auto con el id 4 ha sido eliminado"
+        ]);
+
+        $this->assertDatabaseMissing('autos',[  //busca en la base de datos que no exista un campo con esos valores
+            'id' => '4',
+            'deleted_at' => null
+        ]);
+
+        auto::withTrashed()->where("id",4)->restore(); //recupera el auto con el id 4
+    }
+
+    public function test_EliminarUnoInexistente(){
+        $response = $this ->delete("/api/autos/80");
+
+        $response->assertStatus(404);
+    }
 
 }

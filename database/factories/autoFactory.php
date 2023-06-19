@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+//creamos datos fake para la base
 class autoFactory extends Factory
 {
     /**

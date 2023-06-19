@@ -1,5 +1,5 @@
 <?php
-
+//para auto crea 5 objetos de los que creamos fake
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
