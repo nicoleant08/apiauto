@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+//necesito vincularme con el modelo
+use App\Models\auto;
 use Tests\TestCase;
 
 class AutoTest extends TestCase
