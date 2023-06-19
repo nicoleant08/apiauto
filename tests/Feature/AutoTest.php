@@ -81,4 +81,55 @@ public function test_Listar()
         $response->assertStatus(404);
     }
 
+    public function test_modificarInexiste(){
+        $response=$this->post("/api/autos/80");
+
+        $response->assertStatus(404);
+    }
+ 
+    public function test_ModificarExistente(){
+        
+
+        $estructura= [
+            "id",
+            "marca",
+            "modelo",
+            "color",
+            "puertas",
+            "cilindrado",
+            "automatico",
+            "electronico",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+        ];
+
+        $response=$this->post('/api/autos/3',[
+            "marca"=> "Nissan",
+            "modelo"=>"320",
+            "color"=>"cian",
+            "puertas"=>2,
+            "cilindrado"=>16,
+            "automatico"=>1,
+            "electronico"=>1
+
+            ]);
+
+
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure($estructura);
+
+        $response->assertJsonFragment([
+            "marca"=> "Nissan",
+            "modelo"=>"320",
+            "color"=>"cian",
+            "puertas"=>2,
+            "cilindrado"=>16,
+            "automatico"=>1,
+            "electronico"=>1
+        ]);
+        
+    } 
+
 }
